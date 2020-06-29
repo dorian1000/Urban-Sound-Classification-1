@@ -24,9 +24,10 @@ def parser(ID, n_mfcc, filename):
    return mfccs
 
 n_mfcc = 40
+
 '''
 # Training data
-train = pd.read_csv("../data/train.csv")
+train = pd.read_csv("../data/train_short.csv")
 
 X = np.zeros((len(train), n_mfcc))
 #f = open("../data/t.txt", "w")
@@ -39,14 +40,15 @@ for i in range(len(train)):
 #np.savetxt("../data/X_40.txt", X)
 #f.close()
 '''
+
 # Test data
-test = pd.read_csv("../data/test.csv")
+test = pd.read_csv("../data/train_long.csv")
 
 X = np.zeros((len(test), n_mfcc))
 
 for i in range(len(test)):
-    feature = parser(test.ID[i], n_mfcc, '../data/Test/')
+    feature = parser(test.ID[i], n_mfcc, '../data/Train/')
     X[i] = feature
 
-#np.savetxt("../data/X_test_40.txt", X)
+np.savetxt("../data/X_40_long.txt", X)
 

@@ -30,32 +30,32 @@ if __name__ == '__main__':
     
     
     # Training data
-    train = pd.read_csv("../data/train.csv")
+    train = pd.read_csv("../data/train_short.csv") #train.csv
 
-    X = np.zeros((len(train)-2, bands*173))
+    X = np.zeros((len(train), bands*173)) # len(train)-2 if i.e. two wav´s are corrupted 
 
     j = 0
     for i in tqdm(range(len(train))):
-        if i != 1986 and i != 5312:
+        if True: #i != 1986 and i != 5312
             feature = Spec(train.ID[i], bands, "../data/Train/")
             X[j,:len(feature)] = feature       # Zero padding
             j += 1
 
-    np.savetxt("../data/spectrogram_%d.txt"%bands, X)
+    np.savetxt("../data/spectrogram_%d_short.txt"%bands, X)
     
     
     
     # Test data
     test = pd.read_csv("../data/test.csv")
 
-    X = np.zeros((len(test)-6, bands*173))
+    X = np.zeros((len(test), bands*173))
 
     j = 0
     for i in tqdm(range(len(test))):
-        if i!=437 and i!=1100 and i!=1506 and i!=2087 and i!=2100 and i!=2291: 
-            feature = Spec(test.ID[i], bands, "../data/Test/")
+        if True:  # i!=437 and i!=1100 and i!=1506 and i!=2087 and i!=2100 and i!=2291
+            feature = Spec(test.ID[i], bands, "../data/Train/")
             X[j,:len(feature)] = feature       # Zero padding
             j += 1
 
-    np.savetxt("../data/spectrogram_%d_test.txt"%bands, X)
+    np.savetxt("../data/spectrogram_%d_test_short.txt"%bands, X)
     

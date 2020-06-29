@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import librosa
 import pandas as pd
 
-train = pd.read_csv("../data/train.csv")
+train = pd.read_csv("../data/train_short.csv")
 
 i = np.random.choice(train.index)
 x, sr = librosa.load('../data/Train/' + str(train.ID[i]) + '.wav')
